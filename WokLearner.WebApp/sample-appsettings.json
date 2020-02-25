@@ -1,0 +1,24 @@
+{
+    "Logging": {
+        "LogLevel": {
+            "Default": "Debug",
+            "System": "Information",
+            "Microsoft": "Information"
+        }
+    },
+    "DatabaseSettings" : {
+        "ConnectionString" : "",
+        "UsersDatabase" : "users",
+        "PaintingsDatabase" : "woklearner"
+    },
+    "DefaultAdminSettings" : {
+        "Username" : "Admin",
+        "Password" : "V3ryS3cret!"
+    },
+    "JwtSettings" : {
+        "Audience" : "woklearner.com",
+        "Issuer" : "woklearner.com",
+        "ExpireTimeInSeconds" : 1800,
+        "Key" : "V3ryL0ng&S3cureP@ssword!"
+    }
+}
