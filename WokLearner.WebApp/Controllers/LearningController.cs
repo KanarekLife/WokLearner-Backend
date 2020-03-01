@@ -38,7 +38,7 @@ namespace WokLearner.WebApp.Controllers
         }
 
         [HttpPost("answer")]
-        public async Task<IActionResult> Answer(string paintingId)
+        public async Task<IActionResult> Answer(string paintingId, string style, string author)
         {
             var guidParseResult = Guid.TryParse(paintingId, out var guid);
             if (!guidParseResult) return Problem("Given id looks wrong!", "", 400, "Painting issue.");
@@ -46,13 +46,25 @@ namespace WokLearner.WebApp.Controllers
             if (await result.CountDocumentsAsync() == 1)
             {
                 var user = await _userManager.FindByIdAsync(HttpContext.User.Identity.Name);
+                var painting = await result.FirstAsync();
                 if(!user.LearningStatus.ContainsKey(paintingId))
                 {
                     user.LearningStatus.Add(paintingId,0);
                 }
-                user.LearningStatus[paintingId]++;
-                await _userManager.UpdateAsync(user);
-                return Ok();
+
+                if (painting.Author == author && painting.Style == style)
+                {
+                    user.LearningStatus[paintingId]++;
+                    await _userManager.UpdateAsync(user);
+                    return Ok(new
+                    {
+                        result = true
+                    });
+                }
+                return Ok(new
+                {
+                    result = false
+                });
             } 
             if (await result.CountDocumentsAsync() == 0)
                 return Problem("Couldn't find painting with given id.", "", 400, "Painting issue.");

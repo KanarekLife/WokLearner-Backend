@@ -67,18 +67,6 @@ namespace WokLearner.WebApp.Controllers
             return Problem("Couldn't change your username.", "", 400, "Username change problem.");
         }
 
-        [HttpPut("admin/change-username")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> ChangeUsername(string id, string newUsername)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-                return Problem("Couldn't find the user with given id.", "", 400, "Username change problem.");
-            if ((await _userManager.SetUserNameAsync(user, newUsername)).Succeeded)
-                return Ok();
-            return Problem("Couldn't change the username!", "", 400, "Username change problem.");
-        }
-
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody]PasswordChangeModel model)
         {

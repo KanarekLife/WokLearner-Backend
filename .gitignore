@@ -1,0 +1,14 @@
+# VSCode files
+**/.vscode
+
+# Rider files
+**/.idea
+
+# C# files
+**/bin
+**/obj
+
+# Data files
+/data
+
+*.blob
