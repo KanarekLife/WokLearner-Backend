@@ -38,11 +38,14 @@ namespace WokLearner.WebApp.Controllers
         }
 
         [HttpDelete("remove")]
-        public async Task<IActionResult> Remove()
+        public async Task<IActionResult> RemoveAccount(string password)
         {
             var user = await _userManager.FindByIdAsync(HttpContext.User.Identity.Name);
-            if ((await _userManager.DeleteAsync(user)).Succeeded)
-                return Ok();
+            if (await _userManager.CheckPasswordAsync(user, password))
+            {
+                if ((await _userManager.DeleteAsync(user)).Succeeded)
+                    return Ok();
+            }
             return Problem("Couldn't remove the user! Contact the administrator", "", 400, "User removal problem!");
         }
 
