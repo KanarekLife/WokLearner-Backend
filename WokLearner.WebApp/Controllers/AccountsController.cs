@@ -55,8 +55,11 @@ namespace WokLearner.WebApp.Controllers
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null) return Problem("Couldn't find the user with given id.", "", 400, "User not found!");
-            if ((await _userManager.DeleteAsync(user)).Succeeded)
-                return Ok();
+            if(await _userManager.IsInRoleAsync(user, "Administrator"))
+            {
+                if ((await _userManager.DeleteAsync(user)).Succeeded)
+                    return Ok();
+            }
             return Problem("Couldn't remove the user! Try removing directly in the database!", "", 400,
                 "User removal problem!");
         }
