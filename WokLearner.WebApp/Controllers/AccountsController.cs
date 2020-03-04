@@ -41,7 +41,7 @@ namespace WokLearner.WebApp.Controllers
         public async Task<IActionResult> RemoveAccount(string password)
         {
             var user = await _userManager.FindByIdAsync(HttpContext.User.Identity.Name);
-            if (await _userManager.CheckPasswordAsync(user, password))
+            if (await _userManager.CheckPasswordAsync(user, password) && await _userManager.IsInRoleAsync(user, "Administrator"))
             {
                 if ((await _userManager.DeleteAsync(user)).Succeeded)
                     return Ok();
