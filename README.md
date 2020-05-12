@@ -19,6 +19,8 @@ Created by KanarekLife @ 2020
 ### How to integrate?
 All commands are available to see on `{ip}:{port}/swagger`!
 
+### Swagger screen
+![](docs/screen.png)
 ### Todo
 [X] Authentication and authorization
 
