@@ -1,5 +1,9 @@
 # WokLearner-Backend
 Created by KanarekLife @ 2020
+
+### How to setup (docker edition)?
+1. `docker run -p 80:80 -e "DatabaseSettings:ConnectionString=mongodb+srv://<username>:<password>@woklearnerdev-fziii.mongodb.net/<dbname>?retryWrites=true&w=majority" woklearner-backend`
+
 ### How to setup?
 1. Git pull https://github.com/KanarekLife/WokLearner-Backend
 2. Copy `WokLearner.WebApp/sample-appsettings.json` into `WokLearner.WebApp/appsettings.json`
