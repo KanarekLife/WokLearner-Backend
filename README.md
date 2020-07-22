@@ -36,6 +36,6 @@ All commands are available to see on `{ip}:{port}/swagger`!
 
 [ ] Raking system for competing purposes
 
-[ ] Dockerfile
+[X] Dockerfile
 
 #### Project unfortunately was being created in a hurry so I didn't have time to design unit and integration tests. Please be careful while modifying!
